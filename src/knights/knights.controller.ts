@@ -1,10 +1,16 @@
 import { Body, Controller, Get, Param, Post } from '@nestjs/common';
 
+export class CreateKnightDto {
+  name: string;
+  age: number;
+  house: string;
+}
+
 @Controller('knights')
 export class KnightsController {
   @Post()
-  create(): string {
-    return 'This action adds a new knight';
+  async create(@Body() createKnightDto: CreateKnightDto) {
+    return 'This action adds a new knight named ' + createKnightDto.name;
   }
 
   @Get()
